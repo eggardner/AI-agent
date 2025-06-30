@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Support Agent</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Chat Widget Container -->
+    <div id="ai-support-widget">
+        <!-- Chat Toggle Button -->
+        <div id="chat-toggle" class="chat-toggle">
+            <i class="fas fa-comments"></i>
+            <span class="notification-badge" id="notification-badge">1</span>
+        </div>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="chat-window">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div class="header-content">
+                    <div class="agent-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="agent-info">
+                        <h3>AI Support Agent</h3>
+                        <span class="status online">Online</span>
+                    </div>
+                </div>
+                <button id="close-chat" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Hello! I'm your AI support assistant. How can I help you today?</p>
+                        <span class="message-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="chat-input-container">
+                <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span>AI is typing...</span>
+                </div>
+                <form id="chat-form" class="chat-form">
+                    <input 
+                        type="text" 
+                        id="message-input" 
+                        placeholder="Type your message..." 
+                        autocomplete="off"
+                        maxlength="500"
+                    >
+                    <button type="submit" id="send-btn" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Form Modal -->
+        <div id="contact-modal" class="contact-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Contact Information</h3>
+                    <button id="close-contact-modal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>I don't have enough information to answer your question. Please provide your contact details so someone can help you.</p>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name">Name *</label>
+                            <input type="text" id="contact-name" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email *</label>
+                            <input type="email" id="contact-email" required maxlength="120">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-question">Your Question *</label>
+                            <textarea id="contact-question" required maxlength="1000" rows="4"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" id="cancel-contact" class="btn-secondary">Cancel</button>
+                            <button type="submit" class="btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="success-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Thank You!</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Your question has been submitted successfully. Someone will respond to you shortly.</p>
+                    <button id="close-success-modal" class="btn-primary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration Script -->
+    <script>
+        // Widget Configuration
+        window.AISupportConfig = {
+            apiBaseUrl: '/api',  // Relative URL for same-origin requests
+            knowledgeUrl: '',    // To be set by WordPress plugin
+            sessionId: null,
+            autoOpen: false,
+            position: 'bottom-right',
+            theme: 'default'
+        };
+    </script>
+    
+    <script src="chat-widget.js"></script>
+</body>
+</html>
+
